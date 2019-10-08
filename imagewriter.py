@@ -18,7 +18,7 @@ import os
 import sys
 import configparser
 import time
-import glob
+from glob import glob
 from pathlib import Path
 import pyudev
 import parted
@@ -191,7 +191,7 @@ def detect_storage(path):
         if current_screen == mainscreen:
             mainscreen.flush(disp)
 
-img_path_list = sorted(glob.glob(img_path), reverse=True)
+img_path_list = sorted(glob(img_path), reverse=True)
 img_path_list.append("/dev/zero")
 img_name_list = []
 for i in img_path_list:
