@@ -1,0 +1,2 @@
+[all]
+oled2.local ansible_user=pi
