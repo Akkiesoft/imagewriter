@@ -32,7 +32,7 @@ from oledscreen import oledscreen, oledmenu
 font_path = "Minecraftia-Regular.ttf"
 img_path = "/home/pi/*.zip"
 
-KEY_UP_PIN    = 6 
+KEY_UP_PIN    = 6
 KEY_DOWN_PIN  = 19
 KEY_LEFT_PIN  = 5
 KEY_RIGHT_PIN = 26
@@ -43,7 +43,7 @@ KEY2_PIN      = 20
 
 lock_screen = False
 
-GPIO.setmode(GPIO.BCM) 
+GPIO.setmode(GPIO.BCM)
 GPIO.setup(KEY_UP_PIN,    GPIO.IN, pull_up_down=GPIO.PUD_UP) # Input with pull-up
 GPIO.setup(KEY_DOWN_PIN,  GPIO.IN, pull_up_down=GPIO.PUD_UP) # Input with pull-up
 GPIO.setup(KEY_LEFT_PIN,  GPIO.IN, pull_up_down=GPIO.PUD_UP) # Input with pull-up
@@ -241,8 +241,8 @@ try:
 
 except IOError as e:
     print(e)
-    
-except KeyboardInterrupt:    
+
+except KeyboardInterrupt:
     print("ctrl + c")
     GPIO.cleanup()
     exit()
