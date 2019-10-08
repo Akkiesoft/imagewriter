@@ -15,6 +15,8 @@ https://opensource.org/licenses/mit-license.php
 """
 
 import os
+import sys
+import configparser
 import time
 import glob
 from pathlib import Path
@@ -27,10 +29,23 @@ import config
 import SH1106
 from oledscreen import oledscreen, oledmenu
 
-# Configure
-# TODO: メニューの設定とともにiniで監理したいね
-font_path = "Minecraftia-Regular.ttf"
-img_path = "/home/pi/*.zip"
+# Check argv
+if len(sys.argv) > 1:
+  conf_file = sys.argv[1]
+else:
+  print('USAGE: %s <config file>' % sys.argv[0])
+  sys.exit(1)
+
+# Read config file
+try:
+  conf = configparser.ConfigParser()
+  conf.read(conf_file)
+  font_path = conf.get('config', 'font_path')
+  img_path = conf.get('config', 'img_path')
+  ini_ssh = conf.getint('ssh', 'enabled')
+except Exception as e:
+  print("Could not read config file.: %s" % e)
+  sys.exit(1)
 
 KEY_UP_PIN    = 6
 KEY_DOWN_PIN  = 19
@@ -204,6 +219,7 @@ try:
     sshmenu = oledmenu(disp.width, disp.height, font_path, 8, 10, 5)
     sshmenu.settitle('SSH Configuration')
     sshmenu.setmenu(["Disable", "Enable"])
+    sshmenu.setcursor(ini_ssh)
 
     # set menu relations
     mainmenu.setchild([imgmenu, sshmenu])
