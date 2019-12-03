@@ -8,18 +8,55 @@ Raspbianのイメージとか/dev/zeroを、SDカードとかにddできるや�
 
 * Raspberry Pi
 * [Waveshare 1.3 inch OLED HAT](https://www.waveshare.com/wiki/1.3inch_OLED_HAT)
+* USB-MicroSD カードリーダー
 * Ansible(セットアップに使う)
 
 ## セットアップ
 
-* Ansibleでガッとやるといい感じになります(TODO)
+Ansibleでセットアップする手順です。
+
+* Waveshare 1.3 inch OLED HATをセットして起動します
+* Raspbianをホームディレクトリにダウンロードします
+
+```
+(Raspbianの用意。お好みで)
+pi@raspberrypi:~ $ wget https://downloads.raspberrypi.org/raspbian_latest
+pi@raspberrypi:~ $ wget https://downloads.raspberrypi.org/raspbian_lite_latest
+```
+
+* SSH鍵を生成し、自分で自分にSSH鍵でログインできるようにします
+
+```
+pi@raspberrypi:~ $ ssh-keygen
+(聞かれた内容はすべてそのままEnterを入力)
+pi@raspberrypi:~ $ ssh-copy-id -i ~/.ssh/id_rsa pi@raspberrypi.local
+(piユーザーのパスワードを聞かれるので入力)
+pi@raspberrypi:~ $ ssh raspberrypi.local
+pi@raspberrypi:~ $ exit
+(※上記SSHから抜ける)
+```
+
+* 必要なパッケージをインストールします
+
+```
+pi@raspberrypi:~ $ sudo apt update
+pi@raspberrypi:~ $ sudo apt install -y git ansible
+```
+
+* Githubからリポジトリをcloneします
+
+```
+pi@raspberrypi:~ $ git clone https://github.com/akkiesoft/imagewriter imagewriter-setup
+```
+
+* Ansible Playbookのディレクトリに移動して、Playbookを実行します
+
+```
+pi@raspberrypi:~ $ cd imagewriter-setup/ansible
+pi@raspberrypi:~ $ ansible-playbook -i hosts main.yml
+```
 
 ## 使い方
-
-### 準備
-
-* /home/piにRaspbianのイメージファイルをzipファイルの状態で放り込みます
-* Raspberry Piを再起動します
 
 ### イメージの選択の仕方
 
