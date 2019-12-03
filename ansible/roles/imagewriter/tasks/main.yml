@@ -51,8 +51,8 @@
     dest: "{{ install_dir }}"
     remote_src: yes
   with_items:
-    - /tmp/1.3inch-OLED-HAT-Code/RaspberryPi/python3/config.py
-    - /tmp/1.3inch-OLED-HAT-Code/RaspberryPi/python3/SH1106.py
+    - /tmp/RaspberryPi/python3/config.py
+    - /tmp/RaspberryPi/python3/SH1106.py
 
 - name: copy scripts
   copy:

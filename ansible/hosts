@@ -1,2 +1,2 @@
 [all]
-oled2.local ansible_user=pi
+raspberrypi.local ansible_user=pi
