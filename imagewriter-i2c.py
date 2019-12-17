@@ -30,6 +30,14 @@ import Adafruit_SSD1306
 import PIL.ImageOps
 from oledscreen import oledscreen, oledmenu
 
+# ensure oled module exists.
+import smbus
+try:
+  smbus.SMBus(1).read_byte(0x3c)
+except:
+  print('oled module does not exist. so exit.')
+  sys.exit(1)
+
 # Check argv
 if len(sys.argv) > 1:
   conf_file = sys.argv[1]
