@@ -125,6 +125,7 @@ def button_burn(channel):
         mainscreen.setstatus("Touch ssh file", disp)
         touch_ssh(dev)
     mainscreen.setstatus("Done!", disp)
+    mainscreen.canwrite = False
     lock_screen = False
 
 def dd_img(img, dev):
