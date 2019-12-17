@@ -81,6 +81,14 @@ pi@raspberrypi:~ $ ansible-playbook -i hosts main.yml
 * 書き込み中は画面に書き込み状況が表示されます
 * 書き込みが終わるとDone!と表示されたらSDカードを取り外します
 
+## imagewriter-i2c.py
+
+I2C接続のOLEDモジュール(SSD1306)とボタン2つを使ったバージョンです。
+
+ボタンはGPIO16がイメージの選択、GPIO17が書き込み開始ボタンです。
+
+SSHの有効化等は設定ファイルで記述してください（設定内容は共通です）。
+
 ## Credit, License
 
 Copyright 2019 Akkiesoft (akkiesoft@marokun.net)
