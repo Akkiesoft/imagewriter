@@ -1,2 +1,6 @@
 [all]
-raspberrypi.local ansible_user=pi
+raspberrypi.local
+
+[all:vars]
+#ansible_user=pi
+ansible_python_interpreter=/usr/bin/python3
